@@ -1,16 +1,9 @@
 {
-  "name": "larry-xue/astro-sassify-template",
-  "description": "A template for creating a SaaS landing page with Astro and Tailwind CSS",
-  "author": "Larry Xue",
+  "name": "cashFlow",
+  "author": "Imran Cheroud",
   "license": "MIT",
-  "homepage": "https://astro-sassify.larryxue.dev/",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/larry-xue/astro-sassify-template.git"
-  },
   "type": "module",
-  "version": "1.0.0",
-  "private": true,
+ 
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
