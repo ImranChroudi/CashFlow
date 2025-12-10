@@ -1,0 +1,54 @@
+---
+
+interface Props {
+  name?: string;
+  href?: string;
+  variant?: "dark" | "light";
+  class?: string;
+  showArrow?: boolean;
+}
+
+const {
+  name,
+  href,
+  variant = "dark",
+  class: customClass = "",
+  showArrow = false,
+} = Astro.props;
+
+const variantStyles = {
+  dark: "bg-primary border-2 border-primary text-white hover:bg-primary-500",
+  light:
+    "bg-white text-black border-2 border-primary hover:border-blue-700 hover:bg-gray-50",
+};
+---
+
+<a
+  href={href}
+  class:list={[
+    "inline-flex items-center text-title justify-center gap-2 px-6 py-2 rounded-full font-regular transition-all duration-200",
+    variantStyles[variant],
+    customClass,
+  ]}
+>
+  {name}
+  {
+    showArrow && (
+      <div class="w-6 h-6 rounded-full flex  items-center justify-center border border-white">
+        <svg
+        class="w-4 h-4"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M13 7l5 5m0 0l-5 5m5-5H6"
+        />
+      </svg>
+      </div>
+    )
+  }
+</a>

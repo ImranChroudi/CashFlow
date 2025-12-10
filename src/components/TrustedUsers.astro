@@ -1,0 +1,59 @@
+---
+interface Props {
+  images?: string[];
+  userCount?: string;
+  reviewRating?: number;
+  maxRating?: number;
+  class?: string;
+}
+
+const {
+  images = [
+    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
+    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
+    "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150",
+    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
+  ],
+  userCount = "1M +",
+  reviewRating = 4.8,
+  maxRating = 5,
+  class: customClass = "",
+} = Astro.props;
+---
+
+<div>
+  <!-- Avatar Stack -->
+  <div class="flex items-center gap-6">
+    <div class="flex items-center">
+      <div class="flex -space-x-3">
+        {
+          images.map((image, index) => (
+            <img
+              src={image}
+              alt={`User ${index + 1}`}
+              class="w-12 h-12 rounded-full border-2 border-white shadow-md object-cover"
+            />
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Text Section -->
+    <div class="flex flex-col gap-2">
+      <!-- User Count -->
+      <div class="flex items-center gap-2">
+        <span class="text-xl font-bold text-gray-900">{userCount}</span>
+        <span class="text-gray-600 font-medium">Trusted Users</span>
+      </div>
+
+      <!-- Reviews -->
+    </div>
+  </div>
+  <div class="flex items-center mt-[15px] gap-2">
+    <a href="#" class="text-gray-900 font-semibold hover:underline">
+      Reviews
+    </a>
+    <span class="text-gray-900 font-bold">{reviewRating}</span>
+    <span class="text-gray-600">out of {maxRating}</span>
+  </div>
+</div>

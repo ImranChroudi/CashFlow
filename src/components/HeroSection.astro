@@ -1,0 +1,95 @@
+---
+import { Image } from "astro:assets";
+import Button from "./ui/Button.astro";
+import cash_flow from "../assets/cash-flow.webp";
+import TrusedUsers from "./TrustedUSers.astro";
+
+interface HeroSectionProps {
+  subtitle: string;
+  title: string;
+  emailLabel: {
+    textEmail: string;
+    color: string;
+  };
+  email: string;
+  imageSrc: string;
+  imageAlt: string;
+  buttonHref?: string;
+  sectionBg?: string;
+  text?: string;
+  home?: boolean;
+}
+
+const {
+  subtitle,
+  title,
+
+  imageAlt,
+  sectionBg,
+  text = "",
+
+  classH2,
+} = Astro.props;
+---
+
+<section class={sectionBg}>
+  <div
+    class="container grid-cols-1 py-[20px] sm:px-5 px-2 mx-auto max-w-screen-xl md:grid-cols-2 gap-x-8 grid items-center"
+  >
+    <div
+      class="col-span-1 flex sm:px-[0] px-[30px] flex-col custom-row-gap gap-y-[30px] md:mb-0 md:pr-10 text-center md:text-left"
+    >
+      <h1
+        class="border border-primary rounded-full px-4 py-2 max-w-max md:text-[16px] flex items-center gap-2 text-[14px] md:mx-0 mx-auto poppins-regular text-primary tracking-[-0.5px]"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#6A65FC">
+          <polygon
+            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+          ></polygon>
+        </svg>
+
+        {subtitle}
+      </h1>
+
+      <h2 class=`title-hero-section ${classH2}`>
+        {title}
+      </h2>
+
+      {
+        text && (
+          <p
+            class="paragraph"
+            style="margin-bottom:0 !important"
+            set:html={text}
+          />
+        )
+      }
+
+       <div class="items-center  md:justify-start justify-between mb-[30px] flex gap-2 sm:gap-4 ">
+          <Button href="#" name="Book a Demo" class="py-3 px-0  sm:px-5" showArrow variant="dark" />
+          <Button href="#" name="Learn More" showArrow class="py-3 px-0 sm:px-5" variant="light" />
+      </div>
+      <TrusedUsers />
+     <div>
+
+     </div>
+    </div>
+
+    <div class="col-span-1 flex z-10 justify-center">
+      <div class="relative w-full">
+        <div class="relative w-full">
+          <Image
+            src={cash_flow}
+            alt={"imageAlt"}
+            width={330}
+            height={217}
+            class="w-full h-full rounded-[20px] md:p-[20px] p-[25px] md:scale-100 lg:scale-100 "
+            loading="eager"
+            decoding="async"
+            fetchpriority={"high"}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

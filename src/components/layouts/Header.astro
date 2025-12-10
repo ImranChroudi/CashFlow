@@ -1,0 +1,279 @@
+---
+// src/components/Header.astro
+import AnimatedButton from "../ui/AnimatedButton.astro";
+import Button from "../ui/Button.astro";
+---
+
+<header class="bg-white py-[20px] shadow-sm top-0 z-70">
+  <div class="h-[70px] flex items-center justify-between header">
+      <div class="flex w-full items-center justify-between z-[111]">
+      <!-- Logo -->
+      <a href="/" class="flex items-center text-2xl font-semibold text-primary">
+        <span class="pl-2 pr-[3px] py-1 bg-primary-500 rounded-sm text-white"
+          >Cash</span
+        >Flow
+      </a>
+
+      <!-- Desktop Navigation -->
+      <!-- Desktop Navigation -->
+      <nav class="ml-[150px] ">
+        <ul class="hidden lg:flex items-center sm:gap-[12px] xl:gap-[45px]">
+          <!-- Hébergement web Dropdown -->
+          <li class="relative dropdown-hebergement">
+            <a
+              href="#"
+              class="animated-link hover:text-primary link_header text-title flex items-center gap-2  border-none p-0"
+            >
+              Home
+            </a>
+          </li>
+
+          <!-- @Email Pro -->
+          <li>
+            <a
+              href="/email-professionnel/"
+              class="font-poppins hover:text-primary link_header animated-link flex items-center gap-2 text-title  border-none p-0"
+            >
+              Features
+            </a>
+          </li>
+
+          <!-- Nom de domaine -->
+          <li>
+            <a
+              href="/nom-de-domaine-ma/"
+              class="text-title animated-link link_header  hover:text-primary transition-colors"
+            >
+              Pricing
+            </a>
+          </li>
+
+          <!-- SEO/SEA Dropdown -->
+          <li class="relative dropdown-seo">
+            <a
+              href="/nom-de-domaine-ma/"
+              class="text-title animated-link link_header  hover:text-primary transition-colors"
+              >Blog</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Right Side Actions -->
+      <div class=" items-center gap-2 ml-auto lg:flex hidden">
+        <!-- Connexion Button -->
+          <Button href="#" name="Log in" variant="light" />
+          <Button href="#" name="Book a Demo" showArrow variant="dark" />
+      </div>
+
+        <!-- Mobile Menu Button -->
+
+      
+        <button
+          class="lg:hidden text-title burger-button"
+          aria-label="Toggle menu"
+        >
+          <div class="burger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    class="mobile-menu lg:hidden bg-white border-t border-gray-200 pt-[10px] min-h-screen z-11 fixed w-[100%] h-[100%] hidden"
+  >
+    <nav class="px-6 py-4 space-y-2 overflow-y-auto">
+      <!-- Hébergement web Mobile -->
+      <ul>
+        <li class="mobile-dropdown-hebergement">
+          <a
+            href="#"
+            class="w-full link_header
+           hover:text-primary button cursor-pointer flex items-center justify-between py-2 text-title poppins-semibold"
+          >
+             Home
+        </a> 
+        </li>
+
+        <!-- @Email Pro -->
+        <li>
+          <a
+            href="#features"
+            class="block text-title link_header cursor-pointer hover:text-primary py-2 poppins-semibold"
+          >
+            Features
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="#pricing"
+            class="block text-title link_header cursor-pointer hover:text-primary poppins-semibold py-2"
+          >
+            Pricing
+          </a>
+        </li>
+
+         <li>
+          <a
+            href="#blog"
+            class="block text-title link_header cursor-pointer hover:text-primary poppins-semibold py-2"
+          >
+            Blog
+          </a>
+        </li>
+      </ul>
+
+       <div class=" flex flex-col gap-3 ml-auto">
+        <!-- Connexion Button -->
+          <Button href="#" class="block w-full" name="Book a Demo" showArrow variant="dark" />
+          <Button href="#" class="block w-full" name="Log in" variant="light" />
+
+      </div>
+
+    </nav>
+
+    <script>
+      // Select dropdowns
+      const hebergementDropdown = document.querySelector(
+        ".dropdown-hebergement"
+      );
+      const seoDropdown = document.querySelector(".dropdown-seo");
+
+      // GLOBAL CLICK → close all dropdowns except when clicking inside one of them
+      document.addEventListener("click", (e) => {
+        // If the click is inside hébergement or SEO dropdown ➜ do nothing
+        if (
+          hebergementDropdown?.contains(e.target) ||
+          seoDropdown?.contains(e.target)
+        ) {
+          return; // stop here
+        }
+
+        // Otherwise ➜ close all dropdowns
+        const menuHebergement =
+          hebergementDropdown?.querySelector(".dropdown-menu");
+        const arrowHebergement =
+          hebergementDropdown?.querySelector(".dropdown-arrow");
+
+        const menuSeo = seoDropdown?.querySelector(".dropdown-menu");
+        const arrowSeo = seoDropdown?.querySelector(".dropdown-arrow");
+
+        menuHebergement?.classList.add("hidden");
+        arrowHebergement?.classList.remove("rotate-180");
+
+        menuSeo?.classList.add("hidden");
+        arrowSeo?.classList.remove("rotate-180");
+      });
+
+      // OPEN/CLOSE for Hébergement
+      if (hebergementDropdown) {
+        hebergementDropdown.addEventListener("click", () => {
+          const menu = hebergementDropdown.querySelector(".dropdown-menu");
+          const arrow = hebergementDropdown.querySelector(".dropdown-arrow");
+
+          // Toggle hébergement
+          menu?.classList.toggle("hidden");
+          arrow?.classList.toggle("rotate-180");
+
+          // Always close SEO when opening hébergement
+          const menuSeo = seoDropdown?.querySelector(".dropdown-menu");
+          const arrowSeo = seoDropdown?.querySelector(".dropdown-arrow");
+          menuSeo?.classList.add("hidden");
+          arrowSeo?.classList.remove("rotate-180");
+        });
+      }
+
+      if (seoDropdown) {
+        const menu = seoDropdown.querySelector(".dropdown-menu");
+        const arrow = seoDropdown.querySelector(".dropdown-arrow");
+
+        seoDropdown.addEventListener("click", () => {
+          menu?.classList.toggle("hidden");
+          arrow?.classList.toggle("rotate-180");
+          hebergementDropdown
+            ?.querySelector(".dropdown-menu")
+            ?.classList.add("hidden");
+        });
+      }
+
+      // Mobile menu functionality
+      const burgerButton = document.querySelector(".burger-button");
+      const mobileMenu = document.querySelector(".mobile-menu");
+      const burgerIcon = document.querySelector(".burger-icon");
+
+      burgerButton?.addEventListener("click", () => {
+        mobileMenu?.classList.toggle("hidden");
+        burgerIcon?.classList.toggle("open");
+      });
+
+      // Mobile dropdowns
+      const mobileHebergement = document.querySelector(
+        ".mobile-dropdown-hebergement"
+      );
+      const mobileSeo = document.querySelector(".mobile-dropdown-seo");
+
+      mobileHebergement
+        ?.querySelector("span")
+        ?.addEventListener("click", () => {
+          const submenu = mobileHebergement.querySelector(".mobile-submenu");
+          const arrow = mobileHebergement.querySelector(".mobile-arrow");
+          submenu?.classList.toggle("hidden");
+          arrow?.classList.toggle("rotate-180");
+        });
+
+      mobileSeo?.querySelector("div span")?.addEventListener("click", () => {
+        const submenu = mobileSeo.querySelector(".mobile-submenu");
+        const arrow = mobileSeo.querySelector(".mobile-arrow");
+        submenu?.classList.toggle("hidden");
+        arrow?.classList.toggle("rotate-180");
+      });
+
+      // Language switcher (FR -> EN)
+      const langButtons = document.querySelectorAll(".lang-switch-en");
+      const langButtonsMobile = document.querySelectorAll(
+        ".lang-switch-en-mobile"
+      );
+      const goToEnglish = () => {
+        const { pathname, search, hash } = window.location;
+        if (pathname.endsWith("/en")) return;
+        const basePath = pathname.endsWith("/") ? pathname : `${pathname}/`;
+        window.location.href = `${basePath}en${search}${hash}`;
+      };
+      [...langButtons, ...langButtonsMobile].forEach((btn) =>
+        btn?.addEventListener("click", goToEnglish)
+      );
+    </script>
+  </div>
+</header>
+
+<style>
+  header{
+    position: relative;
+  }
+
+  header::after {
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+    width: 15%;
+    height: 1px;
+    background-color:#6A65FC ;
+  }
+
+  header::before {
+    position: absolute;
+    content: "";
+    bottom: 0;
+    right: 0;
+    width: 15%;
+    height: 1px;
+    background-color:#6A65FC ;
+  }
+</style>
