@@ -1,91 +1,28 @@
 ---
+import FinanceDashboard from "./FinanceDashboard.astro";
+import NameStar from "./ui/NameStar.astro";
 ---
 
-<section id="features" class="py-20 bg-gray-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="features" class="py-[60px]">
+  <div class="container">
     <!-- Section Header -->
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+
+    <div class="text-center lg:w-[600px] mx-auto mb-16">
+      <h1
+        class="border  border-primary rounded-full px-4 py-2 max-w-max md:text-[16px] flex items-center gap-2 text-[14px]  mx-auto poppins-regular text-primary tracking-[-0.5px]"
+      >
+        <NameStar name={"Features"} />
+      </h1>
+      <h2 class="title-section my-[15px]">
         Let's know our cool features
       </h2>
       <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-        Explore powerful tools designed to simplify your financial management and make every transaction effortless.
+        Explore powerful tools designed to simplify your financial management
+        and make every transaction effortless.
       </p>
     </div>
+    <FinanceDashboard />
 
     <!-- Features Grid -->
-    <div class="grid md:grid-cols-2 gap-8 mb-8">
-      <!-- Feature 1: Instant Balance -->
-      <div class="bg-white rounded-2xl p-8 shadow-md hover:shadow-lg transition">
-        <div class="flex items-start gap-4">
-          <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0">
-            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Instant Balance Check</h3>
-            <p class="text-gray-600">Get real-time insights into your account balance and spending patterns at a glance.</p>
-            <button class="mt-4 text-indigo-600 font-semibold text-sm hover:text-indigo-700 flex items-center gap-1">
-              Explore <span>→</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 2: Analytics -->
-      <div class="bg-white rounded-2xl p-8 shadow-md hover:shadow-lg transition">
-        <div class="flex items-start gap-4">
-          <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center flex-shrink-0">
-            <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-            </svg>
-          </div>
-          <div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Advanced Analytics</h3>
-            <p class="text-gray-600">Deep insights into your spending with beautiful charts and comprehensive financial reports.</p>
-            <button class="mt-4 text-indigo-600 font-semibold text-sm hover:text-indigo-700 flex items-center gap-1">
-              Explore <span>→</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 3: Payment Link -->
-      <div class="bg-white rounded-2xl p-8 shadow-md hover:shadow-lg transition">
-        <div class="flex items-start gap-4">
-          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.658 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
-            </svg>
-          </div>
-          <div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Payment Links</h3>
-            <p class="text-gray-600">Create secure payment links instantly and share them with anyone. No account needed.</p>
-            <button class="mt-4 text-indigo-600 font-semibold text-sm hover:text-indigo-700 flex items-center gap-1">
-              Explore <span>→</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 4: Checkout Balance -->
-      <div class="bg-white rounded-2xl p-8 shadow-md hover:shadow-lg transition">
-        <div class="flex items-start gap-4">
-          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Checkout Balance</h3>
-            <p class="text-gray-600">Simple and secure checkout process with balance verification and fraud protection.</p>
-            <button class="mt-4 text-indigo-600 font-semibold text-sm hover:text-indigo-700 flex items-center gap-1">
-              Explore <span>→</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>

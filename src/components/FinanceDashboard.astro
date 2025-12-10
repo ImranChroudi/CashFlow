@@ -1,0 +1,425 @@
+---
+// src/components/FinanceDashboard.astro
+import { Image } from "astro:assets";
+import analytics from "../assets/analytics.webp";
+
+interface BarChartItem {
+  month: string;
+  value: number;
+  pending: boolean;
+}
+
+const spentData: BarChartItem[] = [
+  { month: "Jan", value: 20, pending: true },
+  { month: "Feb", value: 45, pending: false },
+  { month: "Mar", value: 50, pending: true },
+  { month: "Apr", value: 40, pending: false },
+  { month: "May", value: 35, pending: true },
+  { month: "Jun", value: 30, pending: false },
+  { month: "Jul", value: 25, pending: true },
+  { month: "Aug", value: 28, pending: false },
+  { month: "Sep", value: 15, pending: false },
+  { month: "Oct", value: 10, pending: true },
+];
+
+const incomeData = [80, 70, 75, 65, 60, 95, 55, 50, 45, 40, 35, 30];
+---
+
+<style>
+  .bar-chart-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .bar-item {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .bar {
+    width: 100%;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+  }
+
+  .bar.pending {
+    background-color: rgba(174, 172, 176, 0.27);
+  }
+
+  .bar.done {
+    background-color: #9887ff;
+  }
+
+  .income-bar {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background: linear-gradient(to top, rgb(192, 132, 250), rgb(216, 180, 254));
+    opacity: 0.7;
+    border-radius: 4px 4px 0 0;
+  }
+
+  .chart-month-label {
+    font-size: 12px;
+    color: rgb(75, 85, 99);
+    margin-top: 8px;
+  }
+
+  .balance-card {
+    background: linear-gradient(
+      to bottom right,
+      rgb(243, 232, 255),
+      rgb(245, 243, 255)
+    );
+    border: 1px solid rgb(216, 180, 254);
+    border-radius: 16px;
+    padding: 24px;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: rgb(229, 231, 235);
+    border-radius: 9999px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background-color: rgb(168, 85, 247);
+  }
+
+  .card-design {
+    background: linear-gradient(to right, rgb(31, 41, 55), rgb(17, 24, 39));
+    border-radius: 12px;
+    padding: 16px;
+    color: white;
+    height: 96px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .radio-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .radio-option.active {
+    border-color: rgb(168, 85, 247);
+    background-color: rgb(245, 243, 255);
+  }
+
+  .radio-option:hover {
+    background-color: rgb(249, 240, 255);
+  }
+
+  .radio-checkbox {
+    width: 16px;
+    height: 16px;
+    margin-top: 4px;
+    cursor: pointer;
+  }
+
+  @media (max-width: 1024px) {
+    .bar-chart-container {
+      height: 120px;
+    }
+  }
+</style>
+
+<div class="container">
+  <!-- Top Section -->
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-6">
+    <!-- Instant Balance Check -->
+    <div
+      class="rounded-3xl col-span-2 p-8 bg-[#F6F5FA] shadow-sm border border-purple-100"
+    >
+      <h3 class="title-card font-semibold text-title mb-2">
+        Instant Balance <br /> check
+      </h3>
+      <p class="text-gray-600 mb-8">
+        Most popular choice for taking control of your
+      </p>
+
+      <div class="space-y-6 bg-white py-[20px] rounded-3xl">
+        <div class="px-[40px] pb-[20px] border-b border-gray-300">
+          <p class="text-xl font-semibold text-gray-600">Yearly Spent Hours</p>
+        </div>
+        <div class="px-[40px]">
+          <p class="text-4xl font-semibold text-title">$112,340</p>
+        </div>
+
+        <!-- Bar Chart -->
+        <div class="space-y-3 px-[40px]">
+          <div class="bar-chart-container">
+            {
+              spentData.map((item) => (
+                <div class="bar-item">
+                  <div
+                    class={`bar ${item.pending ? "pending" : "done"}`}
+                    style={{ height: `${item.value * 2}px` }}
+                  />
+                </div>
+              ))
+            }
+          </div>
+
+          <div>
+            {
+              spentData.map((item) => (
+                <span
+                  class="chart-month-label inline-block"
+                  style={{ width: `${100 / spentData.length}%` }}
+                >
+                  {item.month}
+                </span>
+              ))
+            }
+          </div>
+
+          <div class="flex justify-center gap-4 mt-4">
+            <div class="flex items-center gap-2">
+              <div
+                class="w-3 h-3 rounded-full"
+                style={{ backgroundColor: "rgba(174, 172, 176, 0.27)" }}
+              >
+              </div>
+              <span class="text-xs text-gray-600">Pending (10%)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 rounded-full bg-primary"></div>
+              <span class="text-xs text-gray-600">Done</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Advance Analytics -->
+    <div
+      class="bg-[#F6F5FA] rounded-3xl p-8 col-span-3 shadow-sm border border-purple-100"
+    >
+      <h3 class="title-card font-semibold text-title mb-2">
+        Advance analytics for your finance data
+      </h3>
+      <p class="text-gray-600 mb-8">
+        Most popular choice for taking control of your personal finances and
+        investments and save more money
+      </p>
+
+      <Image
+        src={analytics}
+        alt={"analytics"}
+        loading={"lazy"}
+        class="rounded-3xl"
+      />
+    </div>
+  </div>
+
+  <!-- Bottom Section -->
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+    <!-- Payment Link -->
+    <div
+      class=" col-span-2 bg-[#F6F5FA] rounded-3xl px-8 pt-8 pb-[0] shadow-sm border border-purple-100"
+    >
+      <div class="flex items-center gap-2 mb-2">
+        <div class="w-8 h-8 bg-primary flex text-xl items-center justify-center text-white rounded-full">$</div>
+        <h3 class="title-card font-semibold text-title">Payment Link</h3>
+      </div>
+      <p class=" mb-8 paragraph">
+        Sell online with a payment link, no website required. Quickly create a
+        comprehensive
+      </p>
+
+      <div class="space-y-6 bg-white p-[20px] rounded-[20px]">
+        <!-- Flowfy Logo -->
+        <div
+          class="flex items-center gap-3 p-4/Users/macbookpro/.Trash/ChatGPT Image Dec 10, 2025, 04_57_55 PM.png bg-purple-50 rounded-xl border border-purple-200"
+        >
+          <div
+            class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center"
+          >
+            <span class="text-white font-bold text-sm">CF</span>
+          </div>
+          <span class="font-semibold text-gray-900">CashFlow</span>
+        </div>
+
+        <!-- Email -->
+        <div>
+          <p class="text-sm text-gray-600 mb-2">Email Address</p>
+          <p class="text-gray-900 font-medium">info.madhu786@gmail.com</p>
+        </div>
+
+        <!-- Card Details -->
+        <div>
+          <p class="text-sm text-gray-600 mb-2">Card Details</p>
+          <div class="card-design">
+            <p class="text-xs opacity-75">Card Number</p>
+            <p class="text-lg tracking-wider">•••• •••• •••• 5324</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkout Balance -->
+    <div
+      class="bg-[#F6F5FA] rounded-3xl p-8 col-span-3 shadow-sm border border-purple-100"
+    >
+      <div class="flex items-center gap-2 mb-2">
+        <svg
+          class="w-6 h-6 text-purple-600"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          ></path>
+        </svg>
+        <h3 class="title-card font-semibold text-title">Checkout Balance</h3>
+      </div>
+      <p class="mb-8 paragraph">
+        Generate & send invoices to your customers easily, no coding needed, and
+        collect payments in minutes
+      </p>
+
+      <!-- Balance Display -->
+      <div class="flex gap-3">
+        <div
+          class="bg-white rounded-2xl p-6 max-h-max border border-purple-200 mb-6"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <h4 class="text-title leading-6 tracking-[-1px] poppins-semibold">Neo Cash Main Balance</h4>
+            <div
+              class="w-8 h-8 bg-primary rounded-full flex items-center justify-center"
+            >
+              <span class="text-white text-xl">+</span>
+            </div>
+          </div>
+          <p class="text-4xl font-semibold text-title mb-6">$1,389.00</p>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <p class="text-xs text-gray-600 mb-1">Neopay Number</p>
+              <p class="text-sm font-semibold text-gray-900">•••••••• 5324</p>
+            </div>
+            <div>
+              <p class="text-xs text-gray-600 mb-1">Neo Points</p>
+              <p class="text-sm font-semibold text-gray-900">320 Points</p>
+            </div>
+          </div>
+           <div class="flex gap-3">
+            <button
+              class="flex-1 px-4 py-3 border-2 border-purple-500 text-purple-600 rounded-xl font-semibold hover:bg-purple-50 transition flex items-center justify-center gap-2"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                ></path>
+              </svg>
+              Withdraw
+            </button>
+            <button
+              class="flex-1 px-2 py-2 bg-primary text-white rounded-xl font-semibold hover:shadow-lg transition"
+            >
+              Pay $98.00
+            </button>
+          </div>
+        </div>
+
+        <!-- Pricing Options -->
+        <div class="space-y-3 mb-6">
+          <label class="radio-option active">
+            <input type="radio" name="package" class="radio-checkbox" checked />
+            <div class="flex-1">
+              <p class="font-semibold text-gray-900">Basic Package</p>
+              <p class="text-xs text-gray-600">
+                PDF 20+ file full access to premium contact
+              </p>
+              <p class="text-sm font-semibold text-title mt-1">$50.00</p>
+            </div>
+          </label>
+
+          <label class="radio-option">
+            <input type="radio" name="package" class="radio-checkbox" />
+            <div class="flex-1">
+              <p class="font-semibold text-gray-900">Pro Package</p>
+              <p class="text-xs text-gray-600">
+                PDF 40+ file full access to premium contact
+              </p>
+              <p class="text-sm font-semibold text-title mt-1">$90.00</p>
+            </div>
+          </label>
+          <div class="flex gap-3">
+            <button
+              class="flex-1 px-4 py-3 border-2 border-purple-500 text-purple-600 rounded-xl font-semibold hover:bg-purple-50 transition flex items-center justify-center gap-2"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                ></path>
+              </svg>
+              Withdraw
+            </button>
+            <button
+              class="flex-1 px-4 py-3 bg-primary text-white rounded-xl font-semibold hover:shadow-lg transition"
+            >
+              Pay $98.00
+            </button>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Add interactivity for radio buttons
+  document.querySelectorAll('input[name="package"]').forEach((radio) => {
+    radio.addEventListener("change", (e) => {
+      document.querySelectorAll(".radio-option").forEach((opt) => {
+        opt.classList.remove("active");
+      });
+      (e.target as HTMLInputElement)
+        .closest(".radio-option")
+        ?.classList.add("active");
+    });
+  });
+</script>

@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import Button from "./ui/Button.astro";
 import cash_flow from "../assets/cash-flow.webp";
 import TrusedUsers from "./TrustedUsers.astro";
+import NameStar from "./ui/NameStar.astro";
 
 interface HeroSectionProps {
   subtitle: string;
@@ -42,13 +43,7 @@ const {
       <h1
         class="border border-primary rounded-full px-4 py-2 max-w-max md:text-[16px] flex items-center gap-2 text-[14px] md:mx-0 mx-auto poppins-regular text-primary tracking-[-0.5px]"
       >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="#6A65FC">
-          <polygon
-            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-          ></polygon>
-        </svg>
-
-        {subtitle}
+        <NameStar name={subtitle} />
       </h1>
 
       <h2 class=`title-hero-section ${classH2}`>
@@ -77,13 +72,13 @@ const {
 
     <div class="col-span-1 flex z-10 justify-center">
       <div class="relative w-full">
-        <div class="relative w-full">
+        <div class="relative w-full flex justify-end  pl-[30px]" >
           <Image
             src={cash_flow}
             alt={"imageAlt"}
             width={330}
             height={217}
-            class="w-full h-full rounded-[20px] md:p-[20px] p-[25px] md:scale-100 lg:scale-100 "
+            class="w-full h-full rounded-[20px] ml-auto scale-95"
             loading="eager"
             decoding="async"
             fetchpriority={"high"}

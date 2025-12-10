@@ -15,7 +15,7 @@
   --color-primary-900: #4c1d95;
   --color-primary-950: #2e1065;
 
-  --bg-primary : #6A65FC ;
+  --bg-primary : #9887ff ;
   --bg-secondary :#FBCBF4;
   --bg-light : #F6F5FA ;
 
@@ -247,6 +247,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   font-smooth: always;
+  font-family: "Poppins", sans-serif;
 }
 
 html {
@@ -354,7 +355,20 @@ select {
   font-weight: 600;
   font-style: normal;
   @apply lg:text-[60px] md:text-[45px] text-[43px] leading-[50px] tracking-[-1.5px] lg:tracking-[-2.6px] md:leading-[52px] md:tracking-[-3px] lg:leading-[70px] font-semibold text-title;
+}
 
+.title-section{
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  @apply lg:text-[54px] md:text-[45px] text-[43px] leading-[50px] tracking-[-1.5px] lg:tracking-[-2.6px] md:leading-[52px] md:tracking-[-3px] lg:leading-[55px] font-semibold text-title;
+}
+
+.title-card {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  @apply  md:text-[42px] text-[36px] leading-[35px] tracking-[-1.5px] lg:tracking-[-2.6px] md:leading-[45px] md:tracking-[-3px] font-medium text-title;
 }
 
 .list-paragraph {
@@ -439,12 +453,7 @@ span {
   @apply md:leading-[64px] md:tracking-[-2.5px] tracking-[-1.5px] leading-[44px];
 }
 
-.title-section {
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  font-style: normal;
-  @apply text-[35px] md:text-[44px] leading-[40px] md:tracking-[-2.5px] tracking-[-1.5px] md:leading-[50px] text-title mb-[10px];
-}
+
 
 .title-section-center {
   letter-spacing: -2.5px;
@@ -466,7 +475,8 @@ span {
   color: var(--text);
   line-height: 1.7rem;
   letter-spacing: 0.2px;
-  @apply md:text-[17px] text-[16px];
+  @apply md:text-[17px] text-[16px] text-gray-600;
+  
 }
 
 .paragraph-mb-0 {
