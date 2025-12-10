@@ -99,6 +99,8 @@
   --gray-100: #F4F4F4;
   --gray-200: #F8F8F8;
   --primary: #6A65FC;
+  --secondary: #FBCBF4;
+  --light :#F6F5FA  ;
   --title: #022545;
   --text: #022545;
   --gap: 20px;
@@ -121,6 +123,7 @@
   --color-gray-200: var(--gray-200);
   --content-spacing: var(--spa);
   --bg-secondary: var(--title);
+  --bg-light : var(--light);
   --row-gap: var(--gap);
 }
 

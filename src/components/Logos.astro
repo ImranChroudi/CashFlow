@@ -1,0 +1,77 @@
+---
+import { Image } from "astro:assets";
+import theme1 from "../assets/theme1.png";
+import theme2 from "../assets/theme2.png";
+import theme3 from "../assets/theme3.png";
+import theme4 from "../assets/theme4.png";
+
+interface Logo {
+  id: string;
+  name: string;
+  src: string;
+  alt: string;
+}
+
+interface Props {
+  logos?: Logo[];
+  class?: string;
+}
+
+const {
+  logos = [
+    {
+      id: "1",
+      src: theme1,
+      name: "Vault",
+      alt: "Invert Logo",
+    },
+    {
+      id: "2",
+      name : "Accend",
+      src: theme2,
+      alt: "Accend Logo",
+    },
+    {
+      id: "3",
+      src: theme3,
+      name : "Compass",
+      alt: "Compass Logo",
+    },
+    {
+      id: "4",
+      src: theme4,
+      name: "Zenith",
+      alt: "Zenith Logo",
+    },
+  ],
+  class: customClass = "",
+} = Astro.props;
+---
+
+<div class="container">
+  <div class:list={["w-full", customClass]}>
+    <div class="logos-container overflow-hidden">
+      <div class="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1  gap-3 w-full">
+        {
+          logos.map((logo) => (
+            <div class="grid-cols-1  rounded-[30px] flex flex-col items-center justify-center py-[50px] bg-[#a6a2a608] items-center justify-center min-w-max">
+              <Image
+                src={logo.src}
+                alt={logo.alt}
+                loading={"lazy"}
+                width={300}
+                height={100}
+                class="h-12 scale-110 object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              />
+              <h4 class="text-[#656565] poppins-semibold mt-[10px]">
+                {
+                  logo.name
+                }
+              </h4>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</div>
