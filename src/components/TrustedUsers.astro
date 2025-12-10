@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 interface Props {
   images?: string[];
   userCount?: string;
@@ -28,9 +30,12 @@ const {
       <div class="flex -space-x-3">
         {
           images.map((image, index) => (
-            <img
+            <Image
               src={image}
+              width={50}
+              height={50}
               alt={`User ${index + 1}`}
+              loading="lazy"
               class="w-12 h-12 rounded-full border-2 border-white shadow-md object-cover"
             />
           ))
