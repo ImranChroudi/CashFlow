@@ -2,6 +2,7 @@
 // src/components/FinanceDashboard.astro
 import { Image } from "astro:assets";
 import analytics from "../assets/analytics.webp";
+import Button from "./ui/Button.astro";
 
 interface BarChartItem {
   month: string;
@@ -148,7 +149,7 @@ const incomeData = [80, 70, 75, 65, 60, 95, 55, 50, 45, 40, 35, 30];
   <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-6">
     <!-- Instant Balance Check -->
     <div
-      class="rounded-3xl col-span-2 p-8 bg-[#F6F5FA] shadow-sm border border-purple-100"
+      class="rounded-3xl col-span-1 lg:col-span-2 p-8 bg-[#F6F5FA] shadow-sm border border-purple-100"
     >
       <h3 class="title-card font-semibold text-title mb-2">
         Instant Balance <br /> check
@@ -213,7 +214,7 @@ const incomeData = [80, 70, 75, 65, 60, 95, 55, 50, 45, 40, 35, 30];
 
     <!-- Advance Analytics -->
     <div
-      class="bg-[#F6F5FA] rounded-3xl p-8 col-span-3 shadow-sm border border-purple-100"
+      class="bg-[#F6F5FA] rounded-3xl p-8 col-span-1 lg:col-span-3 shadow-sm border border-purple-100"
     >
       <h3 class="title-card font-semibold text-title mb-2">
         Advance analytics for your finance data
@@ -228,6 +229,7 @@ const incomeData = [80, 70, 75, 65, 60, 95, 55, 50, 45, 40, 35, 30];
         alt={"analytics"}
         loading={"lazy"}
         class="rounded-3xl"
+        fetchpriority={"low"}
       />
     </div>
   </div>
@@ -236,7 +238,7 @@ const incomeData = [80, 70, 75, 65, 60, 95, 55, 50, 45, 40, 35, 30];
   <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
     <!-- Payment Link -->
     <div
-      class=" col-span-2 bg-[#F6F5FA] rounded-3xl px-8 pt-8 pb-[0] shadow-sm border border-purple-100"
+      class="col-span-1 w-full lg:col-span-2 bg-[#F6F5FA] rounded-3xl p-8 shadow-sm border border-purple-100"
     >
       <div class="flex items-center gap-2 mb-2">
         <div class="w-8 h-8 bg-primary flex text-xl items-center justify-center text-white rounded-full">$</div>
@@ -283,7 +285,7 @@ const incomeData = [80, 70, 75, 65, 60, 95, 55, 50, 45, 40, 35, 30];
     >
       <div class="flex items-center gap-2 mb-2">
         <svg
-          class="w-6 h-6 text-purple-600"
+          class="w-8 p-1 h-8 bg-primary flex text-xl items-center justify-center text-white rounded-full"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -303,11 +305,12 @@ const incomeData = [80, 70, 75, 65, 60, 95, 55, 50, 45, 40, 35, 30];
       </p>
 
       <!-- Balance Display -->
-      <div class="flex gap-3">
+      <div class="flex sm:flex-row flex-col items-center gap-3">
         <div
-          class="bg-white rounded-2xl p-6 max-h-max border border-purple-200 mb-6"
+        style={{height:"max-content"}}
+          class="bg-white rounded-2xl p-6   border border-purple-200 mb-6"
         >
-          <div class="flex items-center justify-between mb-4">
+          <div class="flex  items-center justify-between mb-4">
             <h4 class="text-title leading-6 tracking-[-1px] poppins-semibold">Neo Cash Main Balance</h4>
             <div
               class="w-8 h-8 bg-primary rounded-full flex items-center justify-center"
@@ -327,35 +330,22 @@ const incomeData = [80, 70, 75, 65, 60, 95, 55, 50, 45, 40, 35, 30];
               <p class="text-sm font-semibold text-gray-900">320 Points</p>
             </div>
           </div>
-           <div class="flex gap-3">
+           <div class="flex mt-[20px] gap-3">
             <button
-              class="flex-1 px-4 py-3 border-2 border-purple-500 text-purple-600 rounded-xl font-semibold hover:bg-purple-50 transition flex items-center justify-center gap-2"
+              class="flex-1 px-4 py-2 border-2 bg-[#F6F5FA] rounded-xl font-semibold text-title transition flex items-center justify-center gap-2"
             >
-              <svg
-                class="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                ></path>
-              </svg>
-              Withdraw
+              transfer
             </button>
             <button
               class="flex-1 px-2 py-2 bg-primary text-white rounded-xl font-semibold hover:shadow-lg transition"
             >
-              Pay $98.00
+              Withdraw
             </button>
           </div>
         </div>
 
         <!-- Pricing Options -->
-        <div class="space-y-3 mb-6">
+        <div class="space-y-3 bg-white border border-purple-200 mb-6 p-[20px] rounded-2xl" >
           <label class="radio-option active">
             <input type="radio" name="package" class="radio-checkbox" checked />
             <div class="flex-1">
@@ -377,30 +367,8 @@ const incomeData = [80, 70, 75, 65, 60, 95, 55, 50, 45, 40, 35, 30];
               <p class="text-sm font-semibold text-title mt-1">$90.00</p>
             </div>
           </label>
-          <div class="flex gap-3">
-            <button
-              class="flex-1 px-4 py-3 border-2 border-purple-500 text-purple-600 rounded-xl font-semibold hover:bg-purple-50 transition flex items-center justify-center gap-2"
-            >
-              <svg
-                class="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                ></path>
-              </svg>
-              Withdraw
-            </button>
-            <button
-              class="flex-1 px-4 py-3 bg-primary text-white rounded-xl font-semibold hover:shadow-lg transition"
-            >
-              Pay $98.00
-            </button>
+          <div class="flex gap-3 w-full">
+            <Button href="#" name="Pay $98.00" class="w-full " showArrow variant="dark" />
           </div>
         </div>
 
