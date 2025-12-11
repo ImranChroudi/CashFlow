@@ -2,7 +2,6 @@
 import Footer from "../components/layouts/Footer.astro";
 import Header from "../components/layouts/Header.astro";
 import "../styles/global.css";
-import "../styles/transitions.css";
 
 export interface Props {
   title: string;
@@ -10,7 +9,7 @@ export interface Props {
 }
 
 const {
-  title,
+  title="Cash Flow",
   description = "Modern SaaS landing page template with responsive design and modular sections.",
 } = Astro.props;
 ---
@@ -22,7 +21,7 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="description" content={description} />
     <title>{title}</title>
 

@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/layouts/Header.astro';
 import Footer from '../components/layouts/Footer.astro';
+import Button from '../components/ui/Button.astro';
 ---
 
 <Layout title="Page Not Found - CashFlow">
@@ -14,15 +15,20 @@ import Footer from '../components/layouts/Footer.astro';
           The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
         </p>
         <div class="flex justify-center gap-4 flex-wrap">
-          <a href="/" class="btn-primary">
-            Return Home
-          </a>
-          <a href="/contact" class="btn-secondary">
-            Contact Support
-          </a>
+          <Button
+            name="Go Home"
+            href="/"
+            variant='light'
+            class="py-3 px-4"
+          />
+          <Button 
+            name="Contact Support"
+            href="/contact"
+            variant='dark'
+            class="py-3 px-4"
+          />
         </div>
       </div>
     </section>
   </main>
-  <Footer />
 </Layout> 

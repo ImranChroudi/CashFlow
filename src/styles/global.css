@@ -1128,29 +1128,3 @@ input::placeholder {
 
 }
 
-
-.faq-section ul li p {
-  font-family: "Poppins", sans-serif;
-  font-style: normal;
-  font-size: 16px !important;
-  letter-spacing: 0.2px;
-  line-height: 1.7rem;
-}
-
-.identity li {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-
-  font-size: 17px !important;
-  letter-spacing: 0.2px;
-}
-
-
-@media screen and (max-width: 640px) {
-  .show--consent #cc-main .cc--anim .cm {
-    min-width: 96% !important;
-    left: 0 !important;
-    margin-left: 2% !important;
-  }
-}

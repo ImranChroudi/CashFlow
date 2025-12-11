@@ -26,30 +26,19 @@ const metrics = [
 
 <div class="container">
   <div
-    class="bg-gradient-to-r from-blue-300 to-purple-200 p-[70px] rounded-3xl"
+    class="bg-gradient-to-r from-blue-300 to-purple-200 p-[30px] lg:p-[70px] rounded-3xl"
   >
-    <div class="grid  rounded-2xl bg-white grid-cols-2 p-[30px] lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 rounded-2xl bg-white md:grid-cols-2 p-[30px] lg:grid-cols-4 gap-6">
       {
         metrics.map((metric) => (
-          <div class=" rounded-2xl p-6 transition-shadow">
-            <div class="flex items-baseline gap-2 mb-4">
+          <div class="  lg:p-6  transition-shadow">
+            <div class="flex items-baseline gap-2 sm:mb-4 mb-2">
               <span class="text-[45px] poppins-medium text-slate-900">
-                {metric.value}
+                {metric.value} <span class="text-[25px] poppins-medium text-slate-900">  {metric.unit}</span>
               </span>
+
     
-              <svg
-                class="w-5 h-5 text-slate-900"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M7 16V4m0 0L3 8m0 0l4 4m10-4v12m0 0l4-4m0 0l-4-4"
-                />
-              </svg>
+             
             </div>
             <p class="text-title  text-sm poppins-light leading-relaxed">
               {metric.description}

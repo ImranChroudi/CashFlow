@@ -1,0 +1,376 @@
+---
+import Button from "./ui/Button.astro";
+---
+
+
+<section class="lg:my-[100px] my-[80px]">
+  <div class="container px-[10px] flex lg:flex-row flex-col">
+    <div class="lg:w-[50%] w-[100%] my-auto sm:pr-[60px]">
+      <h2
+        class="title-text-image text-primary-text text-[39px] md:text-[50px] tracking-[-1.1px] md:tracking-normal leading-[46px] md:leading-[57px] mb-[10px] poppins-light"
+      >
+        Ready to transform your <b class="poppins-semibold">cash flow management?</b>
+      </h2>
+      <p class="paragraph ">
+        Get started with CashFlow today. Our team is here to help you streamline payments, optimize cash flow, and grow your business faster.
+      </p>
+
+      <div class="mt-[10px]">
+        <Button
+          href="tel:+1234567890"
+          name="Schedule Demo"
+          showArrow
+          class="py-4 px-8"
+        />
+      </div>
+    </div>
+
+    <div class="lg:w-[50%] w-[100%] pt-[80px] lg:p-[20px]">
+      <div class="p-[40px] container-form">
+        <form class="w-full flex flex-col" id="contactForm">
+          {/* Name and Email Row */}
+          <div class="grid grid-cols-1 md:grid-cols-2 md:gap-[10px]">
+            {/* Name */}
+            <div class="flex label-input flex-col">
+              <label
+                for="name"
+                class="text-lg md:text-xl font-medium text-primary-text mb-3"
+              >
+                Full Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                aria-label="name"
+                placeholder=""
+                class="px-6 py-4 rounded-full bg-gray-100 border border-gray-200 focus:border-primary focus:outline-none focus:bg-white transition-colors placeholder-gray-400"
+                required
+              />
+            </div>
+
+            {/* Email */}
+            <div class="flex label-input flex-col">
+              <label
+                for="email"
+                class="text-lg md:text-xl font-medium text-primary-text mb-3"
+              >
+                Email Address <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                aria-label="email"
+                placeholder=""
+                class="px-6 py-4 rounded-full bg-gray-100 border border-gray-200 focus:border-primary focus:outline-none focus:bg-white transition-colors placeholder-gray-400"
+                required
+              />
+            </div>
+          </div>
+
+          {/* Phone */}
+          <div class="flex label-input flex-col">
+            <label
+              for="phone"
+              class="text-lg md:text-xl font-medium text-primary-text mb-3"
+            >
+              Phone Number
+            </label>
+            <input
+              id="phone"
+              aria-label="phone"
+              type="tel"
+              name="phone"
+              placeholder=""
+              class="px-6 py-4 rounded-full bg-gray-100 border border-gray-200 focus:border-primary focus:outline-none focus:bg-white transition-colors placeholder-gray-400"
+            />
+          </div>
+
+          {/* Message */}
+          <div class="flex label-input flex-col">
+            <label
+              for="message"
+              class="text-lg md:text-xl font-medium text-primary-text mb-3"
+            >
+              Tell us about your needs <span class="text-red-500">*</span>
+            </label>
+            <textarea
+              name="message"
+              id="message"
+              aria-label="message"
+              placeholder="Describe your business challenges or ask any questions..."
+              rows="4"
+              class="px-6 py-5 rounded-3xl bg-gray-100 border border-gray-200 focus:border-primary focus:outline-none focus:bg-white transition-colors placeholder-gray-400 resize-none"
+              required></textarea>
+          </div>
+
+          {/* Submit Button */}
+          <div class="py-5">
+            <button
+              type="submit"
+            >
+             <Button name="Send Message" showArrow class="py-4 w-full" />
+            </button>
+          </div>
+        </form>
+        <div>
+          <p class="text-[13px] leading-[16px] text-primary-lightText">
+            <b>CashFlow™ </b>is committed to protecting and respecting your privacy.
+            We use your personal information solely to manage your account and
+            provide the products and services you have requested.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .container-form {
+    border: 1px solid rgba(190, 190, 190, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .container-form form input {
+    padding: 10px 16px;
+    background: rgba(220, 220, 220, 0.25) !important;
+    border-radius: 26px;
+    font-size: 15px;
+    height: 52px;
+  }
+  .container-form form textarea {
+    padding: 10px 16px;
+    background: rgba(220, 220, 220, 0.25) !important;
+    border-radius: 26px;
+    font-size: 15px;
+  }
+
+  .container-form form label {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    margin-top: 20px;
+    margin-bottom: 12px;
+  }
+
+  .label-input {
+    margin-bottom: 20px;
+  }
+</style>
+
+<script is:inline defer>
+  // Form validation and submission with Brevo integration
+
+  console.log("sadjimjas md");
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contactForm");
+    if (!form) return;
+
+    // Phone validation for international numbers
+    const validatePhone = (phone) => {
+      if (!phone) return true; // Phone is optional
+      // Accept phone numbers with digits, spaces, +, -, (), and .
+      // Minimum 7 digits for international numbers
+      const phoneRegex = /^[\d\s+\-().]{7,}$/;
+      return phoneRegex.test(phone.replace(/\s/g, ""));
+    };
+
+    // Email validation
+    const validateEmail = (email) => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    };
+
+    // Name validation
+    const validateName = (name) => {
+      return name.trim().length >= 2;
+    };
+
+    // Message validation
+    const validateMessage = (message) => {
+      return message.trim().length >= 10;
+    };
+
+    // Display error message
+    const showError = (input, message) => {
+      input.classList.add("border-red-500");
+      input.classList.remove("border-gray-200");
+
+      let errorDiv = input.parentElement.querySelector(".error-message");
+      if (!errorDiv) {
+        errorDiv = document.createElement("p");
+        errorDiv.className = "error-message text-red-500 text-sm mt-1";
+        input.parentElement.appendChild(errorDiv);
+      }
+      errorDiv.textContent = message;
+    };
+
+    // Clear error message
+    const clearError = (input) => {
+      input.classList.remove("border-red-500");
+      input.classList.add("border-gray-200");
+
+      const errorDiv = input.parentElement.querySelector(".error-message");
+      if (errorDiv) {
+        errorDiv.remove();
+      }
+    };
+
+    // Validate individual field
+    const validateField = (field) => {
+      const value = field.value.trim();
+
+      switch (field.name) {
+        case "name":
+          if (!value) {
+            showError(field, "Le nom et prénom est requis");
+            return false;
+          }
+          if (!validateName(value)) {
+            showError(field, "Le nom doit contenir au moins 2 caractères");
+            return false;
+          }
+          clearError(field);
+          return true;
+
+        case "email":
+          if (!value) {
+            showError(field, "L'adresse email est requise");
+            return false;
+          }
+          if (!validateEmail(value)) {
+            showError(field, "Veuillez entrer une adresse email valide");
+            return false;
+          }
+          clearError(field);
+          return true;
+
+        case "phone":
+          if (value && !validatePhone(value)) {
+            showError(field, "Veuillez entrer un numéro de téléphone valide");
+            return false;
+          }
+          clearError(field);
+          return true;
+
+        case "message":
+          if (!value) {
+            showError(field, "Le message est requis");
+            return false;
+          }
+          if (!validateMessage(value)) {
+            showError(field, "Le message doit contenir au moins 10 caractères");
+            return false;
+          }
+          clearError(field);
+          return true;
+
+        default:
+          return true;
+      }
+    };
+
+    // Real-time validation on blur
+    form.querySelectorAll("input, textarea").forEach((field) => {
+      field.addEventListener("blur", () => {
+        validateField(field);
+      });
+
+      // Clear error on input
+      field.addEventListener("input", () => {
+        if (field.classList.contains("border-red-500")) {
+          clearError(field);
+        }
+      });
+    });
+
+    // Form submission
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Validate all fields
+      const fields = form.querySelectorAll("input, textarea");
+      let isValid = true;
+
+      fields.forEach((field) => {
+        if (!validateField(field)) {
+          isValid = false;
+        }
+      });
+
+      if (!isValid) {
+        console.log("Form validation failed");
+        return;
+      }
+
+      // Collect form data
+      const formData = {
+        name: form.querySelector('input[name="name"]').value.trim(),
+        email: form.querySelector('input[name="email"]').value.trim(),
+        phone: form.querySelector('input[name="phone"]').value.trim(),
+        message: form.querySelector('textarea[name="message"]').value.trim(),
+        page: window.location.href,
+      };
+
+      // Show loading state
+      const submitBtn = form.querySelector(
+        'button[type="submit"], button:has(+ div)'
+      );
+      const originalText = submitBtn?.textContent;
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Envoi en cours...";
+      }
+
+      try {
+        // Send to backend
+        console.log("Sending form data:", formData);
+        // Success message
+        showSuccessMessage("Votre message a été envoyé avec succès!");
+        form.reset();
+
+        // Clear any error messages
+        form.querySelectorAll(".error-message").forEach((el) => el.remove());
+        form.querySelectorAll("input, textarea").forEach((field) => {
+          field.classList.remove("border-red-500");
+          field.classList.add("border-gray-200");
+        });
+      } catch (error) {
+        console.error("Error:", error);
+        showErrorMessage(
+          "Une erreur s'est produite. Veuillez réessayer plus tard."
+        );
+      } finally {
+        // Reset button state
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        }
+      }
+    });
+
+    // Show success message
+    const showSuccessMessage = (message) => {
+      const div = document.createElement("div");
+      div.className =
+        "bg-primary-light border border-green-400 text-white px-4 py-3 rounded-lg mb-4";
+      div.textContent = message;
+      form.parentElement.insertBefore(div, form);
+
+      setTimeout(() => div.remove(), 5000);
+    };
+
+    // Show error message
+    const showErrorMessage = (message) => {
+      const div = document.createElement("div");
+      div.className =
+        "bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4";
+      div.textContent = message;
+      form.parentElement.insertBefore(div, form);
+
+      setTimeout(() => div.remove(), 5000);
+    };
+  });
+</script>
