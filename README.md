@@ -1,6 +1,6 @@
-![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/larry-xue/astro-sassify-template?utm_source=oss&utm_medium=github&utm_campaign=larry-xue%2Fastro-sassify-template&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
+![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/larry-xue/astro-CashFlow-template?utm_source=oss&utm_medium=github&utm_campaign=larry-xue%2Fastro-CashFlow-template&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
 
-# Astro Sassify Template
+# Astro CashFlow Template
 
 A modern, responsive Astro template with Tailwind CSS and Alpine.js integration. This template provides a solid foundation for building fast, SEO-friendly websites with a clean design system.
 
@@ -83,14 +83,14 @@ There are two ways to use this template:
 Create a project directly with Astro's official CLI tool:
 
 ```bash
-npm create astro@latest -- --template larry-xue/astro-sassify-template
+npm create astro@latest -- --template larry-xue/astro-CashFlow-template
 ```
 
 ### Option 2: Manual Clone
 
 1. Clone this repository
    ```bash
-   git clone https://github.com/larry-xue/astro-sassify-template.git my-project
+   git clone https://github.com/larry-xue/astro-CashFlow-template.git my-project
    cd my-project
    ```
 
