@@ -95,7 +95,6 @@ export default defineConfig({
   image: {
       service: passthroughImageService(),
     },
-
   vite: {
     plugins: [tailwindcss()]
   }
