@@ -1,8 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import Button from "./ui/Button.astro";
 import transaction from "../assets/transaction.webp";
-import TrusedUsers from "./TrustedUsers.astro";
 import NameStar from "./ui/NameStar.astro";
 
 interface HeroSectionProps {
@@ -71,7 +69,7 @@ const {
             width={330}
             height={217}
             class="w-full h-full rounded-[20px] ml-auto "
-            loading="eager"
+            loading="lazy"
             decoding="async"
             fetchpriority={"low"}
           />
