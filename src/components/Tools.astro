@@ -1,0 +1,98 @@
+---
+import Button from "./ui/Button.astro";
+
+// Integrations.astro
+const integrations = [
+  {
+    name: "Google Calendar",
+    description: "Use calendar feature to your teams",
+    icon: "📅",
+    connected: false,
+
+  },
+  {
+    name: "Miro",
+    description: "Visual collaboration platform",
+    icon: "🎨",
+    connected: false
+  },
+  {
+    name: "Zapier",
+    description: "For integrating with other tools",
+    icon: "⚡",
+    connected: true
+  },
+  {
+    name: "Slack",
+    description: "Messaging to teams",
+    icon: "💬",
+    connected: false
+  },
+  {
+    name: "Stripe",
+    description: "Payment processing through stripe",
+    icon: "💳",
+    connected: false
+  },
+  {
+    name: "Calendly",
+    description: "Scheduling meetings",
+    icon: "📆",
+    connected: false
+  },
+  {
+    name: "Zoom",
+    description: "Video call app",
+    icon: "📹",
+    connected: false
+  }
+];
+---
+
+<section class=" py-[30px]">
+  <div class="container bg-gradient-to-b px-[50px] py-[30px] rounded-3xl from-purple-50 to-white">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+      <div>
+        <h2 class="title-card font-bold text-gray-900 mb-4">
+          Integrated with tools you like most.
+        </h2>
+      </div>
+      <div class="flex flex-col justify-between">
+        <p class="text-gray-600 text-lg mb-8">
+          500+ Top Saas apps are available to integrate with teamly
+        </p>
+        <Button
+            name="Try free trial for 15 days"
+            class="max-w-max py-3 px-5"
+        />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {integrations.map((integration) => (
+        <div class={`p-6 rounded-xl border transition-all ${
+          integration.connected 
+            ? 'border-indigo-300 bg-white shadow-lg' 
+            : 'border-gray-200 bg-white hover:shadow-md'
+        }`}>
+          <div class="flex items-start justify-between mb-4">
+            <div class="text-4xl">{integration.icon}</div>
+           <Button name={integration.connected ? 'Connected' : 'Connect'}
+                variant={integration.connected ? 'dark' : 'light'}
+           />
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">
+            {integration.name}
+          </h3>
+          <p class="text-gray-600 text-sm">
+            {integration.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Optional: Add custom styles if needed */
+</style>
