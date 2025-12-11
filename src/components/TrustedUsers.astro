@@ -11,10 +11,10 @@ interface Props {
 
 const {
   images = [
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
-    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
-    "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150",
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
+    "../assets/user1.avif",
+    "../assets/user2.avif",
+    "../assets/user3.avif",
+    "../assets/user1.avif",
   ],
   userCount = "1M +",
   reviewRating = 4.8,
@@ -36,6 +36,7 @@ const {
               height={50}
               alt={`User ${index + 1}`}
               loading="lazy"
+              fetchpriority={"high"}
               class="w-12 h-12 rounded-full border-2 border-white shadow-md object-cover"
             />
           ))
