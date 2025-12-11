@@ -5,6 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
+  site: "https://cash-flow-c2u4.vercel.app/",
   integrations: [
     Unfonts({
       google: {
