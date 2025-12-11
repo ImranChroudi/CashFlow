@@ -2,6 +2,7 @@
 import { defineConfig , passthroughImageService } from 'astro/config';
 import Unfonts from 'unplugin-fonts/astro'
 import tailwindcss from '@tailwindcss/vite';
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   integrations: [
@@ -52,6 +53,44 @@ export default defineConfig({
         ],
       },
     }),
+    sitemap({
+      serialize(item : any) {
+        // High priority pages - main service pages
+        const highPriorityPages = [
+          "/",
+        ];
+
+        // Lower priority pages - contact and jobs
+
+        const url = new URL(item.url);
+        const path = url.pathname;
+
+        // Filter out 404 and other non-content pages
+        if (path === "/404/") {
+          return null; // Exclude from sitemap
+        }
+
+        // Set priorities
+        if (highPriorityPages.includes(path)) {
+          item.priority = 1.0;
+        } else {
+          // Default priority for any other pages
+          item.priority = 0.8;
+        }
+
+        const dailyPages = ["/"];
+
+      
+
+        // Set changefreq
+        if (dailyPages.includes(path)) {
+          item.changefreq = "daily";
+        }  else {
+          item.changefreq = "monthly";
+        }
+        return item;
+      },
+    } as any )
   ],
   image: {
       service: passthroughImageService(),
