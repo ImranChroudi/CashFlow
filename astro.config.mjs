@@ -1,12 +1,10 @@
 // @ts-check
 import { defineConfig , passthroughImageService } from 'astro/config';
-import alpinejs from '@astrojs/alpinejs';
 import Unfonts from 'unplugin-fonts/astro'
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   integrations: [
-    alpinejs(),
     Unfonts({
       google: {
         families: ["Poppins", "Sora"],
