@@ -1,5 +1,8 @@
 ---
 import { Image } from "astro:assets";
+import user1 from "../assets/user1.avif";
+import user2 from "../assets/user2.avif";
+import user3 from "../assets/user3.avif";
 
 interface Props {
   images?: string[];
@@ -11,10 +14,10 @@ interface Props {
 
 const {
   images = [
-    "../assets/user1.avif",
-    "../assets/user2.avif",
-    "../assets/user3.avif",
-    "../assets/user1.avif",
+    user1,
+    user2,
+    user3,
+    user1
   ],
   userCount = "1M +",
   reviewRating = 4.8,

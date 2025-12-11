@@ -20,7 +20,7 @@ A modern, responsive Astro template with Tailwind CSS and Alpine.js integration.
 ```text
 /
 ├── public/             # Static assets
-│   └── favicon.svg
+│   └── favicon.ico
 ├── src/
 │   ├── assets/         # Images and other assets
 │   ├── components/     # Reusable UI components
